@@ -18,6 +18,8 @@ pre{white-space:pre-wrap;word-break:break-word;background:#080d18;border:1px sol
 .tip{font-size:13px;color:var(--muted);margin:0}.use{background:var(--panel2);padding:11px 13px;border-radius:10px;color:#dce7ff;font-size:14px}
 section{margin-top:28px}h3{font-size:20px;margin:0 0 12px}.foot{margin-top:30px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}.empty{display:none;color:var(--muted);padding:20px}
 @media(max-width:560px){.wrap{padding:18px 12px 50px}.hero{padding:20px}.grid{grid-template-columns:1fr}}
+
+.copywrap pre {white-space:pre-wrap;overflow-wrap:anywhere;padding-right:90px;}
 </style>
 </head>
 <body><main class="wrap">
@@ -156,7 +158,27 @@ graphify --help">Copiar</button></div><div class="label">No Codex — como usar<
 <p class="desc">Você mencionou esse nome na lista anterior, mas ainda não identifiquei com segurança qual repositório ou skill é. Pode ser uma ferramenta que converte imagem/screenshot em código de interface. Não incluí comando para evitar instalar o projeto errado.</p>
 <p class="tip">Envie o link do GitHub ou o nome exato para completar esta ficha.</p>
 <div class="label">No Codex — instalar ou preparar</div><p class="tip">Aguardando identificação do repositório.</p><div class="label">No Codex — como usar</div><div class="use">Após identificar o repositório correto, instale a skill compatível e peça: “Converta esta imagem de referência em uma interface Angular responsiva.”</div><p class="tip">Não existe comando seguro sem confirmar o nome/repositório da ferramenta “Imagen pra Código”.</p></article>
-</div><p class="empty" id="empty">Nenhuma ferramenta corresponde à busca.</p></section>
+<article class="card" data-kind="Skill"><div class="meta"><span class="tag">Skill</span><span class="tag">Refinamento visual</span><span class="tag">Nova</span></div><h2>Unslop</h2><p class="desc">Remove padrões genéricos de interfaces geradas por IA e propõe uma direção visual específica para o produto.</p><p class="tip">Repositório: <a href="https://github.com/heydamir/unslop" rel="noreferrer" target="_blank">heydamir/unslop</a></p><div class="label">Instalar apenas neste projeto — Codex + Claude</div><div class="copywrap"><pre>npx skills add https://github.com/heydamir/unslop --skill unslop -a codex -a claude-code -y</pre><button class="copy" data-copy="npx skills add https://github.com/heydamir/unslop --skill unslop -a codex -a claude-code -y">Copiar</button></div><div class="label">Prompt de uso</div><div class="copywrap"><pre>Use a skill unslop para auditar o dashboard do Reabilitar. Leia SKILL.md, identifique problemas concretos, proponha a direção visual e aguarde aprovação antes de alterar arquivos. Preserve fluxos e regras de negócio.</pre><button class="copy" data-copy="Use a skill unslop para auditar o dashboard do Reabilitar. Leia SKILL.md, identifique problemas concretos, proponha a direção visual e aguarde aprovação antes de alterar arquivos. Preserve fluxos e regras de negócio.">Copiar</button></div><p class="tip">Repositório oficial também oferece instalação como plugin do Claude; este comando usa o formato de skill local para os dois agentes.</p></article><article class="card" data-kind="Skill"><div class="meta"><span class="tag">Skill</span><span class="tag">Mapa de arquitetura</span><span class="tag">Nova</span></div><h2>Floorplan</h2><p class="desc">Cria mapa interativo da arquitetura, módulos, dependências, rotas e fluxos do código, em floorplan/index.html.</p><p class="tip">Repositório: <a href="https://github.com/haydenschmitty/floorplan" rel="noreferrer" target="_blank">haydenschmitty/floorplan</a></p><div class="label">Instalar apenas neste projeto — Codex + Claude</div><div class="copywrap"><pre>npx skills add https://github.com/haydenschmitty/floorplan --skill floorplan -a codex -a claude-code -y</pre><button class="copy" data-copy="npx skills add https://github.com/haydenschmitty/floorplan --skill floorplan -a codex -a claude-code -y">Copiar</button></div><div class="label">Prompt de uso</div><div class="copywrap"><pre>Use a skill floorplan para mapear a arquitetura atual do Reabilitar. Leia SKILL.md, identifique módulos, telas, APIs e dependências. Gere o mapa sem modificar a lógica de negócio; não exponha segredos nem publique o mapa.</pre><button class="copy" data-copy="Use a skill floorplan para mapear a arquitetura atual do Reabilitar. Leia SKILL.md, identifique módulos, telas, APIs e dependências. Gere o mapa sem modificar a lógica de negócio; não exponha segredos nem publique o mapa.">Copiar</button></div><p class="tip">A skill pode executar scripts, fazer chamadas de rede e ler arquivos sensíveis. Revise o SKILL.md e scripts antes de executar.</p></article><article class="card" data-kind="Skill"><div class="meta"><span class="tag">Skill</span><span class="tag">Análise de software</span><span class="tag">Nova</span></div><h2>Teardown</h2><p class="desc">Investiga software, apps, sites e documentos existentes para documentar fluxos, comparar abordagens e planejar melhorias baseadas em evidências.</p><p class="tip">Repositório: <a href="https://github.com/PatrickHuntington/teardown" rel="noreferrer" target="_blank">PatrickHuntington/teardown</a></p><div class="label">Instalar apenas neste projeto — Codex + Claude</div><div class="copywrap"><pre>mkdir -p .agents/skills .claude/skills
+if [ ! -e .agents/skills/teardown ]; then
+  git clone https://github.com/PatrickHuntington/teardown.git .agents/skills/teardown
+else
+  echo "Teardown já existe em .agents/skills; não sobrescrito"
+fi
+if [ ! -e .claude/skills/teardown ]; then
+  cp -a .agents/skills/teardown .claude/skills/teardown
+else
+  echo "Teardown já existe em .claude/skills; não sobrescrito"
+fi</pre><button class="copy" data-copy='mkdir -p .agents/skills .claude/skills
+if [ ! -e .agents/skills/teardown ]; then
+  git clone https://github.com/PatrickHuntington/teardown.git .agents/skills/teardown
+else
+  echo "Teardown já existe em .agents/skills; não sobrescrito"
+fi
+if [ ! -e .claude/skills/teardown ]; then
+  cp -a .agents/skills/teardown .claude/skills/teardown
+else
+  echo "Teardown já existe em .claude/skills; não sobrescrito"
+fi'>Copiar</button></div><div class="label">Prompt de uso</div><div class="copywrap"><pre>Use a skill teardown para estudar o fluxo de atendimento de um software de clínica que eu indicar. Separe funcionalidades observadas, hipóteses e oportunidades para o Reabilitar. Não copie código proprietário nem altere meu projeto sem autorização.</pre><button class="copy" data-copy="Use a skill teardown para estudar o fluxo de atendimento de um software de clínica que eu indicar. Separe funcionalidades observadas, hipóteses e oportunidades para o Reabilitar. Não copie código proprietário nem altere meu projeto sem autorização.">Copiar</button></div><p class="tip">O repositório oficial documenta instalação por cópia integral da pasta. Os comandos acima preservam a estrutura e evitam sobrescrever uma instalação existente.</p></article></div><p class="empty" id="empty">Nenhuma ferramenta corresponde à busca.</p></section>
 <section>
 <h3>Comandos gerais para administrar as skills</h3>
 <div class="grid">
@@ -166,7 +188,61 @@ graphify --help">Copiar</button></div><div class="label">No Codex — como usar<
 <article class="card"><h2>Encontrar outras skills</h2><div class="copywrap"><pre>npx skills find</pre><button class="copy" data-copy="npx skills find">Copiar</button></div></article>
 </div>
 </section>
-<footer class="foot">
+<section><h3>Novas skills — instalar apenas no projeto</h3><p class="desc">Execute a partir da raiz correta do Reabilitar. Não há <code>-g</code> nos comandos. Revise scripts e alterações antes de executar; Floorplan pode inspecionar arquivos sensíveis.</p><div class="label">Todos os comandos em um bloco</div><div class="copywrap"><pre># Entre na raiz REAL do seu projeto antes de instalar
+# Exemplo: cd /caminho/para/REABILITAR
+
+# Unslop (local: Codex e Claude)
+npx skills add https://github.com/heydamir/unslop --skill unslop -a codex -a claude-code -y
+
+# Floorplan (local: Codex e Claude)
+npx skills add https://github.com/haydenschmitty/floorplan --skill floorplan -a codex -a claude-code -y
+
+# Teardown (local: Codex e Claude; sem sobrescrever)
+mkdir -p .agents/skills .claude/skills
+if [ ! -e .agents/skills/teardown ]; then git clone https://github.com/PatrickHuntington/teardown.git .agents/skills/teardown; fi
+if [ ! -e .claude/skills/teardown ]; then cp -a .agents/skills/teardown .claude/skills/teardown; fi
+
+# Verificar
+npx skills list
+find .agents/skills .claude/skills -maxdepth 2 -name SKILL.md -print | sort</pre><button class="copy" data-copy="# Entre na raiz REAL do seu projeto antes de instalar
+# Exemplo: cd /caminho/para/REABILITAR
+
+# Unslop (local: Codex e Claude)
+npx skills add https://github.com/heydamir/unslop --skill unslop -a codex -a claude-code -y
+
+# Floorplan (local: Codex e Claude)
+npx skills add https://github.com/haydenschmitty/floorplan --skill floorplan -a codex -a claude-code -y
+
+# Teardown (local: Codex e Claude; sem sobrescrever)
+mkdir -p .agents/skills .claude/skills
+if [ ! -e .agents/skills/teardown ]; then git clone https://github.com/PatrickHuntington/teardown.git .agents/skills/teardown; fi
+if [ ! -e .claude/skills/teardown ]; then cp -a .agents/skills/teardown .claude/skills/teardown; fi
+
+# Verificar
+npx skills list
+find .agents/skills .claude/skills -maxdepth 2 -name SKILL.md -print | sort">Copiar tudo</button></div><h3 style="margin-top:24px">Prompt mestre para Codex ou Claude Code</h3><p class="desc">Cole em um novo chat com o projeto aberto. Ele solicita análise e plano antes de qualquer mudança.</p><div class="copywrap"><pre>Você está trabalhando no projeto Reabilitar, um sistema de gestão de clínica com pacientes, atendimentos, Pilates, agenda e financeiro.
+
+Antes de alterar arquivos:
+1. Inspecione a estrutura do projeto e localize as skills instaladas em .agents/skills/ e .claude/skills/.
+2. Leia os arquivos SKILL.md das skills relevantes. Não invente instruções.
+3. Use Floorplan para explicar a arquitetura atual, suas dependências e fluxos principais; não publique mapas ou segredos.
+4. Use Teardown somente quando houver sistema, documento ou fluxo de referência a analisar. Diferencie evidências de inferências.
+5. Use Unslop para avaliar a qualidade visual das telas existentes e propor ajustes que preservem identidade e funcionalidades. Apresente a direção visual antes de implementar.
+6. Selecione outras skills já instaladas apenas quando forem relevantes (por exemplo, web-design-guidelines e impeccable).
+7. Proponha um plano priorizado, incluindo testes, riscos e critérios de aceite. Não altere nada até eu aprovar.
+
+Ao responder, informe os caminhos dos SKILL.md realmente lidos e o motivo de cada skill selecionada.</pre><button class="copy" data-copy="Você está trabalhando no projeto Reabilitar, um sistema de gestão de clínica com pacientes, atendimentos, Pilates, agenda e financeiro.
+
+Antes de alterar arquivos:
+1. Inspecione a estrutura do projeto e localize as skills instaladas em .agents/skills/ e .claude/skills/.
+2. Leia os arquivos SKILL.md das skills relevantes. Não invente instruções.
+3. Use Floorplan para explicar a arquitetura atual, suas dependências e fluxos principais; não publique mapas ou segredos.
+4. Use Teardown somente quando houver sistema, documento ou fluxo de referência a analisar. Diferencie evidências de inferências.
+5. Use Unslop para avaliar a qualidade visual das telas existentes e propor ajustes que preservem identidade e funcionalidades. Apresente a direção visual antes de implementar.
+6. Selecione outras skills já instaladas apenas quando forem relevantes (por exemplo, web-design-guidelines e impeccable).
+7. Proponha um plano priorizado, incluindo testes, riscos e critérios de aceite. Não altere nada até eu aprovar.
+
+Ao responder, informe os caminhos dos SKILL.md realmente lidos e o motivo de cada skill selecionada.">Copiar prompt</button></div><p class="tip">PixelPF não foi incluída: o repositório exato ainda não foi identificado.</p></section><footer class="foot">
 <strong>Notas de instalação</strong>
 <ul>
 <li>Skills instaladas com <code>npx skills add</code> ficam no projeto atual por padrão; <code>-g</code> instala no escopo global do usuário.</li>
