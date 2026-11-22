@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Guia completo — Skills e Plugins para Claude Code e Codex</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2c;--panel2:#18233a;--text:#edf2ff;--muted:#a9b5ce;--line:#2b3853;--accent:#8ab4ff;--green:#8de0bd;--yellow:#f5d58a}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#10182a 55%,#0b1020);color:var(--text);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:34px 20px 70px}.hero{padding:28px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 90% 10%,#263c67 0,transparent 35%),var(--panel)}
+.kicker{color:var(--green);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:10px 0}.hero p{color:var(--muted);max-width:760px}
+.note{border-left:3px solid var(--yellow);padding:10px 14px;background:#28251866;border-radius:8px;color:#f3e7c5;margin-top:18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:11px 13px;border-radius:10px;font:inherit}.toolbar input{flex:1;min-width:220px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}.card h2{font-size:19px;margin:0}.meta{display:flex;gap:7px;flex-wrap:wrap}.tag{font-size:11px;border:1px solid var(--line);padding:2px 8px;border-radius:20px;color:var(--muted)}.desc{color:var(--muted);margin:0}.card a{color:var(--accent);text-decoration:none}.card a:hover{text-decoration:underline}.label{font-size:12px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+pre{white-space:pre-wrap;word-break:break-word;background:#080d18;border:1px solid #26334c;padding:12px;border-radius:10px;margin:0;color:#dce8ff;font-size:13px;position:relative;padding-right:84px}
+.copy{border:1px solid #405477;background:#223553;color:white;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:650}.copy:hover{background:#304b75}.copywrap{position:relative}.copywrap .copy{position:absolute;right:7px;top:7px;font-size:11px}
+.tip{font-size:13px;color:var(--muted);margin:0}.use{background:var(--panel2);padding:11px 13px;border-radius:10px;color:#dce7ff;font-size:14px}
+section{margin-top:28px}h3{font-size:20px;margin:0 0 12px}.foot{margin-top:30px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}.empty{display:none;color:var(--muted);padding:20px}
+@media(max-width:560px){.wrap{padding:18px 12px 50px}.hero{padding:20px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero">
+<div class="kicker">Guia pessoal • Claude Code</div>
+<h1>Skills e plugins para Claude Code e Codex</h1>
+<p>Todas as ferramentas que você mencionou, com explicação, instalação e exemplo de uso separados para Claude Code e Codex. Clique em Copiar para levar os comandos ao terminal.</p>
+<div class="note">Atenção: comandos /plugin e slash commands de plugins são específicos do Claude Code. Para o Codex, as skills compatíveis usam -a codex; CLIs e documentos podem funcionar nos dois, mas hooks e plugins podem exigir adaptação.</div>
+</header>
+<div class="toolbar">
+<input id="q" placeholder="Buscar ferramenta, função ou comando…" type="search"/>
+<select id="kind"><option value="">Todos os tipos</option><option>Skill</option><option>Plugin</option><option>CLI + Skill</option><option>Referência</option><option>Pendente</option></select>
+</div>
+<section><h3>Ferramentas confirmadas</h3><div class="grid" id="cards">
+<article class="card" data-kind="Skill">
+<div class="meta"><span class="tag">Skill</span><span class="tag">Design de interface</span></div>
+<h2>1. Taste Skill</h2>
+<p class="desc">Ajuda o agente a criar interfaces com direção visual mais consistente e menos aparência genérica: composição, tipografia, imagens, microinterações e acabamento.</p>
+<p class="tip">Repositório: <a href="https://github.com/Leonxlnx/taste-skill" rel="noreferrer" target="_blank">Leonxlnx/taste-skill</a></p>
+<div class="label">No Claude Code — Instalar globalmente no Claude Code</div>
+<div class="copywrap"><pre>npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend -g -a claude-code</pre><button class="copy" data-copy="npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend -g -a claude-code">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Use a Taste Skill para redesenhar a tela de dashboard deste projeto, mantendo as regras de negócio e melhorando hierarquia visual, tipografia e espaçamento.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx skills add Leonxlnx/taste-skill -g -a codex</pre><button class="copy" data-copy="npx skills add Leonxlnx/taste-skill -g -a codex">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Use Taste Skill para melhorar a hierarquia visual do dashboard Angular, sem mudar a lógica.”</div><p class="tip">Instale a skill no Codex e abra uma nova sessão. Confira no instalador o nome exato da skill; o repositório pode oferecer mais de uma.</p></article>
+<article class="card" data-kind="Skill">
+<div class="meta"><span class="tag">Skill</span><span class="tag">Auditoria UI/UX</span></div>
+<h2>2. Web Design Guidelines</h2>
+<p class="desc">Skill da Vercel que revisa interfaces e código de UI com foco em acessibilidade, semântica, formulários, estados de foco, responsividade, desempenho e boas práticas de UX.</p>
+<p class="tip">Repositório: <a href="https://github.com/vercel-labs/agent-skills" rel="noreferrer" target="_blank">vercel-labs/agent-skills</a></p>
+<div class="label">No Claude Code — Instalar globalmente</div>
+<div class="copywrap"><pre>npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -a claude-code</pre><button class="copy" data-copy="npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -a claude-code">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Faça uma auditoria desta tela usando Web Design Guidelines. Liste problemas de acessibilidade, UX e responsividade e corrija os que forem seguros.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -a codex</pre><button class="copy" data-copy="npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -a codex">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Use web-design-guidelines para auditar acessibilidade e responsividade deste formulário e corrija os problemas.”</div><p class="tip">Use o nome da skill explicitamente ou selecione-a pelo menu de skills do Codex.</p></article>
+<article class="card" data-kind="Referência">
+<div class="meta"><span class="tag">Referência</span><span class="tag">Design system</span></div>
+<h2>3. Awesome DESIGN.md</h2>
+<p class="desc">Coleção de exemplos de arquivos DESIGN.md. Cada arquivo descreve linguagem visual — cores, tipografia, componentes, espaçamento, sombras e regras — para orientar a IA a manter consistência. Não é um plugin executável.</p>
+<p class="tip">Repositório: <a href="https://github.com/VoltAgent/awesome-design-md" rel="noreferrer" target="_blank">VoltAgent/awesome-design-md</a></p>
+<div class="label">Instalação / uso</div>
+<div class="copywrap"><pre>git clone https://github.com/VoltAgent/awesome-design-md.git</pre><button class="copy" data-copy="git clone https://github.com/VoltAgent/awesome-design-md.git">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">Escolha um DESIGN.md adequado, copie para a raiz do projeto e peça: “Leia DESIGN.md e trate-o como fonte da verdade visual. Antes de alterar a UI, respeite cores, fontes, espaçamentos e padrões de componentes.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>git clone https://github.com/VoltAgent/awesome-design-md.git</pre><button class="copy" data-copy="git clone https://github.com/VoltAgent/awesome-design-md.git">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Copie um DESIGN.md de referência para a raiz do projeto. Peça: “Leia DESIGN.md e mantenha a identidade visual em todas as alterações.”</div><p class="tip">Não é uma skill instalável: é uma coleção de exemplos. Vale igualmente para Claude e Codex.</p></article>
+<article class="card" data-kind="CLI + Skill">
+<div class="meta"><span class="tag">CLI + Skill</span><span class="tag">Browser testing</span></div>
+<h2>4. Playwright CLI</h2>
+<p class="desc">Permite ao agente abrir um navegador real, navegar, clicar, preencher formulários, inspecionar páginas e capturar screenshots. A skill ensina o agente a operar o CLI. Requer Node.js 20 ou superior.</p>
+<p class="tip">Repositório: <a href="https://github.com/microsoft/playwright-cli" rel="noreferrer" target="_blank">microsoft/playwright-cli</a></p>
+<div class="label">No Claude Code — Instalar CLI</div>
+<div class="copywrap"><pre>npm install -g @playwright/cli@latest</pre><button class="copy" data-copy="npm install -g @playwright/cli@latest">Copiar</button></div>
+<div class="label">No Claude Code — Instalar skill global para Claude Code</div>
+<div class="copywrap"><pre>playwright-cli install --skills -g</pre><button class="copy" data-copy="playwright-cli install --skills -g">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Use Playwright CLI para testar o fluxo de login, recuperação de senha e cadastro. Valide cenários de sucesso e erro e salve screenshots.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npm install -g @playwright/cli@latest
+playwright-cli install --skills -g</pre><button class="copy" data-copy="npm install -g @playwright/cli@latest
+playwright-cli install --skills -g">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Use Playwright CLI para abrir a aplicação local, testar login e gerar screenshots dos erros.”</div><p class="tip">O CLI funciona fora dos agentes. Verifique onde o instalador colocou a skill; se for exclusiva do Claude, consulte o README para integrá-la ao Codex ou instrua o Codex a usar o CLI diretamente.</p></article>
+<article class="card" data-kind="Referência">
+<div class="meta"><span class="tag">Referência</span><span class="tag">Padrão aberto</span></div>
+<h2>5. Agent Skills</h2>
+<p class="desc">Não é uma skill específica: é o formato/ecossistema de instruções reutilizáveis (normalmente um arquivo SKILL.md) que diferentes agentes conseguem carregar. O CLI <code>npx skills</code> instala skills de repositórios compatíveis.</p>
+<p class="tip">Documentação do instalador: <a href="https://github.com/vercel-labs/skills" rel="noreferrer" target="_blank">vercel-labs/skills</a> • Especificação: <a href="https://agentskills.io/" rel="noreferrer" target="_blank">agentskills.io</a></p>
+<div class="label">Comandos úteis</div>
+<div class="copywrap"><pre>npx skills find angular
+npx skills list
+npx skills update</pre><button class="copy" data-copy="npx skills find angular
+npx skills list
+npx skills update">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">Instale uma skill específica e depois peça a tarefa em linguagem natural. O agente carrega as instruções quando a descrição da skill combina com o trabalho.</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx skills find angular
+npx skills add anthropics/skills -g -a codex</pre><button class="copy" data-copy="npx skills find angular
+npx skills add anthropics/skills -g -a codex">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Mostre as skills disponíveis e use a mais adequada para revisar meu componente.”</div><p class="tip">Agent Skills é um padrão. O comando acima é um exemplo de coleção, não uma instalação de “Agent Skills” como uma única skill.</p></article>
+<article class="card" data-kind="CLI + Skill">
+<div class="meta"><span class="tag">CLI + Skill</span><span class="tag">Entender codebase</span></div>
+<h2>6. Graphify</h2>
+<p class="desc">Analisa código, documentação, esquemas SQL e configurações e constrói um grafo de conhecimento consultável. Ajuda a descobrir relações entre módulos, funções e arquivos sem depender de um índice vetorial.</p>
+<p class="tip">Repositório oficial: <a href="https://github.com/Graphify-Labs/graphify" rel="noreferrer" target="_blank">Graphify-Labs/graphify</a>. Requer Python 3.11.5–3.14 e uv (ou pipx).</p>
+<div class="label">No Claude Code — Instalar CLI e integração Claude Code</div>
+<div class="copywrap"><pre>uv tool install graphifyy
+graphify install</pre><button class="copy" data-copy="uv tool install graphifyy
+graphify install">Copiar</button></div>
+<div class="label">Como usar dentro do projeto</div><div class="use">“/graphify .” para criar/consultar o grafo do projeto. Depois pergunte: “Quais módulos dependem do serviço de autenticação?”</div>
+<p class="tip">O comando <code>graphify install</code> instala instruções/integração local; não configura por si só um servidor MCP remoto.</p>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>uv tool install graphifyy
+graphify --help</pre><button class="copy" data-copy="uv tool install graphifyy
+graphify --help">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Analise as dependências do projeto usando o CLI Graphify, sem presumir que o comando /graphify do Claude exista no Codex.”</div><p class="tip">Instale o CLI e verifique a ajuda. A integração /graphify e os hooks descritos no repositório podem ser específicos do Claude; não há garantia de slash command equivalente no Codex.</p></article>
+<article class="card" data-kind="Plugin">
+<div class="meta"><span class="tag">Plugin</span><span class="tag">Qualidade de código</span></div>
+<h2>7. Ponytail</h2>
+<p class="desc">Plugin que orienta o agente a evitar soluções desnecessariamente complexas, excesso de abstrações e código que não agrega valor. Também usa hooks; Node precisa estar disponível no PATH para os hooks funcionarem.</p>
+<p class="tip">Repositório: <a href="https://github.com/DietrichGebert/ponytail" rel="noreferrer" target="_blank">DietrichGebert/ponytail</a></p>
+<div class="label">No Claude Code — execute em duas mensagens separadas</div>
+<div class="copywrap"><pre>/plugin marketplace add DietrichGebert/ponytail</pre><button class="copy" data-copy="/plugin marketplace add DietrichGebert/ponytail">Copiar</button></div>
+<div class="copywrap"><pre>/plugin install ponytail@ponytail</pre><button class="copy" data-copy="/plugin install ponytail@ponytail">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Implemente esta funcionalidade seguindo Ponytail: primeiro procure reutilizar o que já existe e escolha a solução mais simples que atenda aos requisitos.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>git clone https://github.com/DietrichGebert/ponytail.git</pre><button class="copy" data-copy="git clone https://github.com/DietrichGebert/ponytail.git">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Antes de implementar, procure funcionalidades existentes e prefira a solução mais simples, sem abstrações desnecessárias.”</div><p class="tip">Ponytail é plugin do Claude; /plugin install não funciona no Codex. Você pode adaptar as instruções públicas do projeto a um AGENTS.md, após revisá-las; hooks não são portados automaticamente.</p></article>
+<article class="card" data-kind="Skill">
+<div class="meta"><span class="tag">Skill</span><span class="tag">Motion design</span></div>
+<h2>8. Emil Kowalski — Skills</h2>
+<p class="desc">Coleção de skills para designers e engenheiros: animações, revisão e melhoria de motion, performance, princípios Apple, prototipação e experiência mobile.</p>
+<p class="tip">Repositório: <a href="https://github.com/emilkowalski/skills" rel="noreferrer" target="_blank">emilkowalski/skills</a></p>
+<div class="label">No Claude Code — Instalar no Claude Code</div>
+<div class="copywrap"><pre>npx skills add emilkowalski/skills -g -a claude-code</pre><button class="copy" data-copy="npx skills add emilkowalski/skills -g -a claude-code">Copiar</button></div>
+<div class="label">Skills disponíveis (exemplos)</div><p class="tip">animate, review-animations, improve-animations, find-animation-opportunities, animation-performance, apple-design, prototype, mobile-native, break-ui e pick-ui-library.</p>
+<div class="label">No Claude Code — como usar</div><div class="use">“Use as skills do Emil Kowalski para revisar as animações desta tela, corrigir easing e duração e verificar se o movimento respeita prefers-reduced-motion.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx skills add emilkowalski/skills -g -a codex</pre><button class="copy" data-copy="npx skills add emilkowalski/skills -g -a codex">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Use a skill de revisão de animações do Emil Kowalski para melhorar easing, duração e reduced motion.”</div><p class="tip">Se o instalador oferecer seleção, escolha só as skills necessárias; verifique a lista de nomes instalada.</p></article>
+<article class="card" data-kind="Skill">
+<div class="meta"><span class="tag">Skill + hooks</span><span class="tag">Design quality</span></div>
+<h2>9. Impeccable</h2>
+<p class="desc">Kit de vocabulário e revisão visual para agentes de código. Ajuda a criticar, auditar e refinar interfaces, reduzindo problemas comuns de UI genérica. O instalador pode configurar skill e hook de revisão automática.</p>
+<p class="tip">Repositório: <a href="https://github.com/pbakaus/impeccable" rel="noreferrer" target="_blank">pbakaus/impeccable</a></p>
+<div class="label">No Claude Code — Instalar</div>
+<div class="copywrap"><pre>npx impeccable install</pre><button class="copy" data-copy="npx impeccable install">Copiar</button></div>
+<p class="tip">O instalador pergunta se a instalação será por projeto ou global e oferece o hook quando suportado. Aceite o hook e reinicie/recarregue o Claude Code. Para atualizar: <code>npx impeccable update</code>.</p>
+<div class="label">No Claude Code — como usar</div><div class="use">/impeccable init<br/>/impeccable critique<br/>/impeccable audit<br/>/impeccable polish<br/>/impeccable animate</div>
+<p class="tip">Também pode ser instalado como plugin nativo do Claude Code: adicionar o marketplace <code>pbakaus/impeccable</code> e depois instalar Impeccable pela tela <code>/plugin</code>.</p>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx impeccable install</pre><button class="copy" data-copy="npx impeccable install">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Use os princípios do Impeccable para criticar e refinar o dashboard; preserve a arquitetura Angular.”</div><p class="tip">No instalador, selecione Codex se essa opção estiver disponível. Não presuma que /impeccable init e outros slash commands do Claude estarão presentes no Codex; use instruções em linguagem natural ou as skills que o instalador criar.</p></article>
+<article class="card" data-kind="Skill">
+<div class="meta"><span class="tag">Skill</span><span class="tag">Google Stitch</span></div>
+<h2>10. DESIGN.md — Stitch design-md</h2>
+<p class="desc">Skill do Google Stitch que analisa telas e metadados de um projeto Stitch e gera um DESIGN.md semântico com tokens, cores, tipografia, espaçamentos e padrões de componentes. Exige acesso ao Stitch MCP Server e um projeto Stitch com pelo menos uma tela.</p>
+<p class="tip">Repositório: <a href="https://github.com/google-labs-code/stitch-skills" rel="noreferrer" target="_blank">google-labs-code/stitch-skills</a></p>
+<div class="label">No Claude Code — Instalar globalmente</div>
+<div class="copywrap"><pre>npx skills add google-labs-code/stitch-skills --skill design-md -g -a claude-code</pre><button class="copy" data-copy="npx skills add google-labs-code/stitch-skills --skill design-md -g -a claude-code">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Analise as telas do meu projeto no Stitch e gere um DESIGN.md completo documentando o sistema visual.”</div>
+<p class="tip">Sem o Stitch MCP configurado e acesso ao projeto, essa skill não consegue buscar as telas do Stitch.</p>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>npx skills add google-labs-code/stitch-skills --skill design-md -g -a codex</pre><button class="copy" data-copy="npx skills add google-labs-code/stitch-skills --skill design-md -g -a codex">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Com o Stitch MCP configurado, analise as telas do projeto e gere DESIGN.md.”</div><p class="tip">Sem Stitch MCP e permissão ao projeto, a skill não consegue acessar as telas. A instalação da skill não configura automaticamente o MCP.</p></article>
+<article class="card" data-kind="Referência">
+<div class="meta"><span class="tag">Referência</span><span class="tag">Design system</span></div>
+<h2>11. DESIGN.md (arquivo)</h2>
+<p class="desc">É um documento Markdown com a identidade visual do projeto. Não é plugin nem skill por si só. Pode ser criado manualmente ou por uma skill e usado por qualquer agente que leia arquivos do projeto.</p>
+<div class="label">Como criar um arquivo inicial</div>
+<div class="copywrap"><pre>touch DESIGN.md</pre><button class="copy" data-copy="touch DESIGN.md">Copiar</button></div>
+<div class="label">No Claude Code — como usar</div><div class="use">“Leia DESIGN.md antes de alterar qualquer interface. Siga fielmente a paleta, tipografia, escala de espaçamento, componentes, estados e regras responsivas descritas nele.”</div>
+<div class="label">No Codex — instalar ou preparar</div><div class="copywrap"><pre>touch DESIGN.md</pre><button class="copy" data-copy="touch DESIGN.md">Copiar</button></div><div class="label">No Codex — como usar</div><div class="use">Peça: “Leia DESIGN.md e aplique os tokens visuais aos componentes Angular que você modificar.”</div><p class="tip">Arquivo comum de projeto, não precisa de instalação. Funciona com ambos os agentes quando o arquivo está acessível.</p></article>
+<article class="card" data-kind="Pendente">
+<div class="meta"><span class="tag">Pendente</span><span class="tag">Nome não confirmado</span></div>
+<h2>12. “Imagen pra Código”</h2>
+<p class="desc">Você mencionou esse nome na lista anterior, mas ainda não identifiquei com segurança qual repositório ou skill é. Pode ser uma ferramenta que converte imagem/screenshot em código de interface. Não incluí comando para evitar instalar o projeto errado.</p>
+<p class="tip">Envie o link do GitHub ou o nome exato para completar esta ficha.</p>
+<div class="label">No Codex — instalar ou preparar</div><p class="tip">Aguardando identificação do repositório.</p><div class="label">No Codex — como usar</div><div class="use">Após identificar o repositório correto, instale a skill compatível e peça: “Converta esta imagem de referência em uma interface Angular responsiva.”</div><p class="tip">Não existe comando seguro sem confirmar o nome/repositório da ferramenta “Imagen pra Código”.</p></article>
+</div><p class="empty" id="empty">Nenhuma ferramenta corresponde à busca.</p></section>
+<section>
+<h3>Comandos gerais para administrar as skills</h3>
+<div class="grid">
+<article class="card"><h2>Listar skills instaladas</h2><div class="copywrap"><pre>npx skills list</pre><button class="copy" data-copy="npx skills list">Copiar</button></div></article>
+<article class="card"><h2>Verificar atualizações</h2><div class="copywrap"><pre>npx skills check</pre><button class="copy" data-copy="npx skills check">Copiar</button></div></article>
+<article class="card"><h2>Atualizar skills</h2><div class="copywrap"><pre>npx skills update</pre><button class="copy" data-copy="npx skills update">Copiar</button></div></article>
+<article class="card"><h2>Encontrar outras skills</h2><div class="copywrap"><pre>npx skills find</pre><button class="copy" data-copy="npx skills find">Copiar</button></div></article>
+</div>
+</section>
+<footer class="foot">
+<strong>Notas de instalação</strong>
+<ul>
+<li>Skills instaladas com <code>npx skills add</code> ficam no projeto atual por padrão; <code>-g</code> instala no escopo global do usuário.</li>
+<li>Após instalar, abra uma nova sessão do Claude Code se a skill não aparecer.</li>
+<li>Plugins do Claude Code são instalados com comandos <code>/plugin</code> dentro do próprio Claude Code; não cole esses comandos diretamente no shell.</li>
+<li>Confira o README e as permissões de qualquer repositório de terceiros antes de instalar. Skills podem incluir scripts e hooks.</li>
+</ul>
+<strong>Fontes principais:</strong>
+<a href="https://github.com/Leonxlnx/taste-skill" rel="noreferrer" target="_blank">Taste Skill</a> ·
+<a href="https://github.com/vercel-labs/agent-skills" rel="noreferrer" target="_blank">Vercel Agent Skills</a> ·
+<a href="https://github.com/VoltAgent/awesome-design-md" rel="noreferrer" target="_blank">Awesome DESIGN.md</a> ·
+<a href="https://github.com/microsoft/playwright-cli" rel="noreferrer" target="_blank">Playwright CLI</a> ·
+<a href="https://github.com/Graphify-Labs/graphify" rel="noreferrer" target="_blank">Graphify</a> ·
+<a href="https://github.com/DietrichGebert/ponytail" rel="noreferrer" target="_blank">Ponytail</a> ·
+<a href="https://github.com/emilkowalski/skills" rel="noreferrer" target="_blank">Emil Kowalski Skills</a> ·
+<a href="https://github.com/pbakaus/impeccable" rel="noreferrer" target="_blank">Impeccable</a> ·
+<a href="https://github.com/google-labs-code/stitch-skills" rel="noreferrer" target="_blank">Stitch Skills</a> ·
+<a href="https://github.com/vercel-labs/skills" rel="noreferrer" target="_blank">Skills CLI</a>.
+</footer>
+</main>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+ const t=b.dataset.copy;
+ try{await navigator.clipboard.writeText(t);b.textContent='Copiado!';}
+ catch(e){const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();document.execCommand('copy');x.remove();b.textContent='Copiado!';}
+ setTimeout(()=>b.textContent='Copiar',1400);
+}));
+const q=document.getElementById('q'), kind=document.getElementById('kind'), cards=[...document.querySelectorAll('#cards .card')], empty=document.getElementById('empty');
+function filter(){let n=0;cards.forEach(c=>{const ok=(c.innerText.toLowerCase().includes(q.value.toLowerCase()))&&(!kind.value||c.dataset.kind===kind.value);c.style.display=ok?'flex':'none';if(ok)n++;});empty.style.display=n?'none':'block';}
+q.addEventListener('input',filter);kind.addEventListener('change',filter);
+</script>
+</body></html>
